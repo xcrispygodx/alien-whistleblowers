@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alien Whistleblowers — Government Testimony Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --text-primary: #c8c8d0;
+            --text-dim: #6a6a7a;
+            --text-bright: #e8e8f0;
+            --accent-gold: #c9a84c;
+            --accent-gold-dim: #8a6e2f;
+            --accent-red: #8b2020;
+            --accent-green: #2a6a3a;
+            --border-color: #222233;
+            --glow-gold: rgba(201, 168, 76, 0.15);
+            --glow-red: rgba(139, 32, 32, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 18px;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.03) 2px,
+                rgba(0, 0, 0, 0.03) 4px
+            );
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+        }
+
+        .header-top {
+            text-align: center;
+            padding: 24px 20px 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-symbol {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 8px;
+            letter-spacing: 12px;
+        }
+
+        .site-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+        }
+
+        .site-subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 0;
+            background: var(--bg-secondary);
+        }
+
+        nav a {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 14px 28px;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent-gold);
+            background: var(--glow-gold);
+            border-bottom-color: var(--accent-gold);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(139, 32, 32, 0.05) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-bright);
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            text-shadow: 0 0 60px rgba(201, 168, 76, 0.2);
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        .hero-divider {
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+            margin: 30px auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .section-header .section-line {
+            width: 60px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 12px auto;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .featured-main {
+            grid-column: 1 / -1;
+        }
+
+        .post-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .post-card:hover {
+            border-color: var(--accent-gold-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 60px var(--glow-gold);
+        }
+
+        .post-card:hover::before {
+            opacity: 1;
+        }
+
+        .post-card-image {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-main .post-card-image {
+            height: 350px;
+        }
+
+        .post-card-image .image-symbol {
+            font-size: 4rem;
+            opacity: 0.4;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .post-card-image .image-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        .post-card-body {
+            padding: 24px;
+        }
+
+        .post-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(201, 168, 76, 0.1);
+            padding: 4px 10px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .post-tag.red {
+            color: #c44;
+            background: rgba(139, 32, 32, 0.15);
+            border-color: rgba(139, 32, 32, 0.3);
+        }
+
+        .post-card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .featured-main .post-card-title {
+            font-size: 1.6rem;
+        }
+
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .post-card-title a:hover {
+            color: var(--accent-gold);
+        }
+
+        .post-card-excerpt {
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .post-card-meta {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+        }
+
+        .read-more {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-symbol {
+            font-size: 1.5rem;
+            color: var(--accent-gold-dim);
+            margin-bottom: 16px;
+            letter-spacing: 8px;
+        }
+
+        .footer-text {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .site-title { font-size: 1.6rem; letter-spacing: 4px; }
+            nav { flex-wrap: wrap; }
+            nav a { padding: 10px 16px; font-size: 0.65rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .featured-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<header>
+    <div class="header-top">
+        <span class="header-symbol">&#9670; &#9671; &#9670;</span>
+        <div class="site-title">Alien Whistleblowers</div>
+        <div class="site-subtitle">Government Testimony & Hearing Archive</div>
+    </div>
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="articles/grusch-testimony.html">Grusch Hearing</a>
+        <a href="articles/senate-uap.html">Senate UAP</a>
+        <a href="articles/pentagon-records.html">Pentagon Files</a>
+        <a href="about.html">About</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Government <span class="highlight">Insider Testimony</span><br>On UFO Reverse Engineering</h1>
+    <p>Former military personnel, intelligence officers, and government contractors are coming forward with unprecedented claims about recovered alien craft and secret programs funded by black budgets.</p>
+    <div class="hero-divider"></div>
+    <div class="hero-quote">"We have intact craft and biological materials..." — David Grusch, Former Air Force Intelligence Officer</div>
+</section>
+
+<div class="container">
+    <div class="section-header">
+        <h2>&#9670; Classified Testimony &#9670;</h2>
+        <div class="section-line"></div>
+        <p>Recent whistleblower revelations from official sources</p>
+    </div>
+
+    <div class="featured-grid">
+        <div class="featured-main">
+            <article class="post-card">
+                <div class="post-card-image" style="background: linear-gradient(135deg, #1a0a0a, #0d1117, #1a1a00);">
+                    <svg class="image-pattern" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="200" cy="150" rx="150" ry="80" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                        <ellipse cx="200" cy="150" rx="100" ry="50" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                        <ellipse cx="200" cy="150" rx="50" ry="20" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="50" y1="150" x2="350" y2="150" stroke="#c9a84c" stroke-width="0.3" opacity="0.2"/>
+                    </svg>
+                    <span class="image-symbol">&#9670;</span>
+                </div>
+                <div class="post-card-body">
+                    <span class="post-tag red">BREAKING</span>
+                    <h2 class="post-card-title"><a href="articles/grusch-testimony.html">David Grusch's Historic Congressional Testimony: The Full Transcript</a></h2>
+                    <p class="post-card-excerpt">For the first time, a former senior intelligence official testified under oath about recovered non-human spacecraft and reverse engineering programs operating outside congressional oversight.</p>
+                    <div class="post-card-meta">
+                        <span>CLASSIFIED HEARING &bull; 15 MIN READ</span>
+                        <a href="articles/grusch-testimony.html" class="read-more">Read Testimony &rarr;</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <article class="post-card">
+            <div class="post-card-image" style="background: linear-gradient(135deg, #0a0a1a, #0d1117, #1a0a1a);">
+                <svg class="image-pattern" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="125" r="90" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                    <circle cx="200" cy="125" r="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                    <circle cx="200" cy="125" r="30" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                </svg>
+                <span class="image-symbol">&#9670;</span>
+            </div>
+            <div class="post-card-body">
+                <span class="post-tag red">UAP Hearings</span>
+                <h2 class="post-card-title"><a href="articles/senate-uap.html">Senate UAP Hearing: What They Actually Said</a></h2>
+                <p class="post-card-excerpt">The Pentagon's top UAP officials answered questions about recovered craft, non-human origin materials, and the alleged crash retrieval programs.</p>
+                <div class="post-card-meta">
+                    <span>JUN 2026 &bull; 12 MIN READ</span>
+                    <a href="articles/senate-uap.html" class="read-more">Decode &rarr;</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="post-card">
+            <div class="post-card-image" style="background: linear-gradient(135deg, #1a0000, #0d1117, #001a00);">
+                <svg class="image-pattern" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="100" y="50" width="200" height="150" stroke="#c9a84c" stroke-width="1" fill="none" opacity="0.2"/>
+                    <line x1="100" y1="50" x2="300" y2="200" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="300" y1="50" x2="100" y2="200" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                    <circle cx="200" cy="125" r="40" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                </svg>
+                <span class="image-symbol">&#9670;</span>
+            </div>
+            <div class="post-card-body">
+                <span class="post-tag">Pentagon</span>
+                <h2 class="post-card-title"><a href="articles/pentagon-records.html">Pentagon's Secret UFO Records: What Just Got Released</a></h2>
+                <p class="post-card-excerpt">New documents obtained through FOIA reveal the extent of classified programs studying recovered anomalous materials.</p>
+                <div class="post-card-meta">
+                    <span>MAR 2026 &bull; 8 MIN READ</span>
+                    <a href="articles/pentagon-records.html" class="read-more">Decode &rarr;</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="post-card">
+            <div class="post-card-image" style="background: linear-gradient(135deg, #1a1a00, #0d1117, #001a1a);">
+                <svg class="image-pattern" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="200,20 380,200 200,380 20,200" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.3"/>
+                    <circle cx="200" cy="200" r="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+                </svg>
+                <span class="image-symbol">&#9670;</span>
+            </div>
+            <div class="post-card-body">
+                <span class="post-tag">Navy</span>
+                <h2 class="post-card-title"><a href="articles/nimitz-incident.html">The Nimitz Encounter: Commander's Full Account</a></h2>
+                <p class="post-card-excerpt">Commander David Fravor reveals what the 2004 USS Nimitz carrier group actually encountered and why it was buried.</p>
+                <div class="post-card-meta">
+                    <span>OCT 2023 &bull; 10 MIN READ</span>
+                    <a href="articles/nimitz-incident.html" class="read-more">Decode &rarr;</a>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-symbol">&#9670; &#9671; &#9670; &#9671; &#9670;</div>
+    <div class="footer-text">Alien Whistleblowers Archive &bull; Est. 2026</div>
+    <div class="footer-text">"The truth is out there — and it's being testified under oath"</div>
+</footer>
+
+</body>
+</html>
