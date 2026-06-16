@@ -13,7 +13,8 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Crimson Text', Georgia, serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.8; font-size: 18px; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px); }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 10; }
         .article-header { text-align: center; margin-bottom: 40px; padding: 40px 0; border-bottom: 1px solid var(--border-color); }
         .article-title { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--accent-gold); letter-spacing: 4px; margin-bottom: 10px; }
         .article-meta { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
@@ -24,15 +25,29 @@
         .quote-block cite { display: block; margin-top: 10px; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--accent-gold-dim); }
         .back-link { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--accent-gold); text-decoration: none; letter-spacing: 2px; margin-bottom: 20px; display: inline-block; }
         .back-link:hover { text-shadow: 0 0 10px rgba(201, 168, 76, 0.5); }
+        .article-image { width: 100%; height: 150px; margin: 20px 0; display: flex; align-items: center; justify-content: center; opacity: 0.3; }
+        .article-image svg { width: 100%; height: 100%; }
+        .section-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border-color), transparent); margin: 40px 0; }
     </style>
 </head>
 <body>
+<div class="scanlines"></div>
+<div class="scanlines"></div>
 <div class="container">
     <a href="../index.html" class="back-link">&larr; Back to Archive</a>
     <div class="article-header">
         <span class="post-tag red">BREAKING</span>
         <h1 class="article-title">David Grusch's Historic Congressional Testimony</h1>
         <div class="article-meta">June 2023 &bull; House Oversight Committee &bull; Classification Level: TS//SCI//NOFORN</div>
+    </div>
+    <div class="article-image">
+        <svg viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="200" cy="75" rx="150" ry="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+            <ellipse cx="200" cy="75" rx="100" ry="40" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+            <ellipse cx="200" cy="75" rx="50" ry="20" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+            <line x1="50" y1="75" x2="350" y2="75" stroke="#c9a84c" stroke-width="0.3" opacity="0.2"/>
+            <rect x="150" y="50" width="100" height="50" stroke="#c9a84c" stroke-width="1" fill="none" opacity="0.3"/>
+        </svg>
     </div>
     <div class="article-content">
         <p>On June 5, 2023, David Charles Grusch, a former member of the U.S. Air Force and National Reconnaissance Office senior intelligence officer, provided sworn testimony to Congress about Unidentified Anomalous Phenomena (UAP) and alleged reverse engineering programs.</p>
